@@ -1,5 +1,5 @@
 # Whatsapp RTU Result Server
-This server delivers RTU result of to whatsapp clients
+This server delivers RTU result to whatsapp clients
 ```
 Note that currently it only works in Whatsapp Business and Delivers 'BTECH IV SEM MAIN 2019' result only
 ```
