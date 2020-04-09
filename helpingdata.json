@@ -1,0 +1,12 @@
+{
+	"chromedriverlink": {
+		"linux": "https://chromedriver.storage.googleapis.com/80.0.3987.106/chromedriver_linux64.zip", 
+		"windows": "https://chromedriver.storage.googleapis.com/81.0.4044.69/chromedriver_win32.zip"
+	},
+	"examtitle": {
+		"BTECH IV SEM.(MAIN) EXAM. 2019 (AFTER REVALUATION)": "565",
+		"B.TECH IV SEM.(MAIN) EXAM. 2019": "523",
+		"BTECH III SEM.(MAIN) EXAM. 2019 (AFTER REVALUATION)": "520"
+	}
+	
+}

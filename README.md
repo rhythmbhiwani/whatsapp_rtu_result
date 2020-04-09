@@ -26,6 +26,7 @@ On Windows, Execute the *whatsapp_result_server.exe* and give all the permission
 
 On Linux, open terminal and navigate to the project directory and run the command:
 ```
+chmod +x whatsapp_result_server
 ./whatsapp_result_server
 ```
 

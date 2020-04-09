@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['whatsapp_result_server.py'],
-             pathex=['D:\\Whatsapp RTU Result Package'],
+             pathex=['D:\\WorkingProjects\\Whatsapp_RTU_Result_Package'],
              binaries=[],
              datas=[],
              hiddenimports=[],
