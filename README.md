@@ -34,6 +34,6 @@ chmod +x whatsapp_result_server
 Google chrome will start and you will see whatsapp login QR Code. Just scan the code and you are ready to serve
 
 ## Testing
-Just message any RTU roll number to get his/her result of 'BTECH IV SEM MAIN 2019'
+Just message any RTU roll number to get his/her result of the selected exam
 
 ## Thank You
