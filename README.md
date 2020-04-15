@@ -6,7 +6,7 @@ Note that currently it only works in Whatsapp Business
 
 ## Prerequisite
 #### For windows
-Download this setup[https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.4/wkhtmltox-0.12.4_msvc2015-win64.exe] and install *wkhtmltox.exe* using default configurations.
+Download this (Setup)[https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.4/wkhtmltox-0.12.4_msvc2015-win64.exe] and install *wkhtmltox.exe* using default configurations.
 Now add the the location "*C:\Program Files\wkhtmltopdf\bin*" to the *PATH* in Environmental Variables
 
 #### For Linux users
