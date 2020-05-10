@@ -4,9 +4,11 @@
 		"windows": "https://chromedriver.storage.googleapis.com/81.0.4044.69/chromedriver_win32.zip"
 	},
 	"examtitle": {
-		"BTECH IV SEM.(MAIN) EXAM. 2019 (AFTER REVALUATION)": ["565",1175],
-		"B.TECH IV SEM.(MAIN) EXAM. 2019": ["523",1175],
-		"BTECH III SEM.(MAIN) EXAM. 2019 (AFTER REVALUATION)": ["520",1225]
+		"BTECH I SEM. REBACK EXAM. 2020": ["580",200,"https://www.rjlive.in/rtu/result-portal/580?exam=btech-i-sem-reback-exam-2020"],
+		"B.TECH V SEM.(MAIN) EXAM. 2020": ["573",1150,"https://www.rjlive.in/rtu/result-portal/573?exam=b-tech-v-sem-main-exam-2020"],
+		"BTECH IV SEM.(MAIN) EXAM. 2019 (AFTER REVALUATION)": ["565",1175,"https://www.rjlive.in/rtu/result-portal/565?exam=btech-iv-sem-main-exam-2019-after-revaluation"],
+		"B.TECH IV SEM.(MAIN) EXAM. 2019": ["523",1175,"https://www.rjlive.in/rtu/result-portal/523?exam=b-tech-iv-sem-main-exam-2019"],
+		"BTECH III SEM.(MAIN) EXAM. 2019 (AFTER REVALUATION)": ["520",1225,"https://www.rjlive.in/rtu/result-portal/520?exam=btech-iii-sem-main-exam-2019-after-revaluation"]
 	}
 	
 }

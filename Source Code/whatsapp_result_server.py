@@ -24,21 +24,22 @@ Link = "https://web.whatsapp.com/" #Link for whatsapp web
 roll_no_pattern = re.compile('\d{2}[A-Z]{5}\d+', re.I) #Roll number pattern
 examname = None
 examcode = None
+examurl = None
 
 with open('helpingdata.json') as data:
   helpingdata = json.load(data)
 
-def insert2db(rollno, total, per):
+def insert2db(rollno, res):
 	sql="SELECT * from student where rollno='{}' and examid='{}';".format(rollno.upper(),examcode)
 	cursorobj.execute(sql)
 	record = cursorobj.fetchone()
 	if record==None:
-		qry="INSERT INTO student (rollno, examid, total, per) VALUES ('{}','{}',{},{});".format(rollno.upper(),examcode,total,per)
+		qry="INSERT INTO student (rollno, examid, res) VALUES ('{}','{}',{});".format(rollno.upper(),examcode,res)
 		cursorobj.execute(qry)
 		dbconnection.commit()
 
 def showpercentage(rollno):
-    sql="SELECT per from student where rollno='{}' and examid='{}';".format(rollno.upper(),examcode)
+    sql="SELECT res from student where rollno='{}' and examid='{}';".format(rollno.upper(),examcode)
     cursorobj.execute(sql)
     record = cursorobj.fetchone()
     if record==None:
@@ -49,6 +50,7 @@ def showpercentage(rollno):
 def selectexamname():
 	global examname
 	global examcode
+	global examurl
 	examlist = list(helpingdata['examtitle'].keys())
 	count = 0
 	for i in examlist:
@@ -62,6 +64,7 @@ def selectexamname():
 			else:
 				examname = examlist[choice-1]
 				examcode = helpingdata['examtitle'][examname][0]
+				examurl = helpingdata['examtitle'][examname][2]
 				print(examname,"Selected!")
 				break
 		except Exception as e:
@@ -112,7 +115,7 @@ result_options.add_argument('--headless')
 result_options.add_argument('--disable-gpu')
 result_options.add_argument('--log-level=3')
 driver = webdriver.Chrome('chromedriver'+slash+cdname, options=result_options)
-
+# driver = webdriver.Chrome('chromedriver'+slash+cdname)
 
 #Read blacklist
 def readblaklist(rno):
@@ -141,12 +144,32 @@ def loggerfun(name,rollno,status):
 		print(text)
 		log.write(text)
 
+def page_has_loaded(driver):
+    page_state = driver.execute_script('return document.readyState;')
+    return page_state == 'complete'
+
 #function to get result
 def get_result(rollno):
 	global examname
 	global examcode
 	rollno=rollno.upper() #Capitalize roll number
-	driver.get("https://www.rjlive.in/rtu/print-result/"+examcode+"?rollno="+rollno+"&key=0") #load result url
+	driver.get(examurl) #load result url
+
+	pagestatus = page_has_loaded(driver)
+	while pagestatus!=True:
+		pagestatus = page_has_loaded(driver)
+
+	rollnumberinputbox = driver.find_element_by_id("Rollno")
+
+	rollnumberinputbox.send_keys(rollno)
+
+	driver.execute_script("GetResultByRollNo();")
+	sleep(2)
+
+	pagestatus = page_has_loaded(driver)
+	while pagestatus!=True:
+		pagestatus = page_has_loaded(driver)
+		
 	try:
 		#execute JS to extract result
 		examname = driver.execute_script('''return document.getElementById("ExamName").value;''')
@@ -162,11 +185,12 @@ def get_result(rollno):
 		index = res.find(' Grand Total </b> </font></td><td align="center"><font> <b>')
 		total = int(re.findall('\d+|$', res[index:index+100])[0])
 		per = (total*100)/float(helpingdata['examtitle'][examname][1])
-		insert2db(rollno,total,per)
+		insert2db(rollno,per)
 		#Convert Result from html to image
 		imgkit.from_string(res, 'Results/'+rollno+'_'+examcode+'.jpg')
 		return 1 #Return 1 if result saved successfully
 	except Exception as e:
+		# print(e)
 		return 0 #Return 0 if result not found
 
 #function to send result save in location to whatsapp
@@ -261,4 +285,5 @@ while True:
 						failmsg(name,matched_rollno[0])
 						writeblacklist(matched_rollno[0]) #add rollno to blacklist
 	except Exception as e:
+		# print(e)
 		sleep(1)
